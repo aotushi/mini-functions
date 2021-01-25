@@ -1,0 +1,17 @@
+Array.prototype.myFilter=function(fn){
+    //声明一个空数组,来接受符合条件的项
+    let arr=[];
+    //** 想不到的是新建一个数组用来接受和fn作为参数
+    //this指向:谁调用指向谁
+    for(let i=0; i<this.length; i++){
+        if(fn(this[i])) arr.push(this[i]);
+    }
+    return arr;
+}
+
+let arr=[1,2,3,4,5,6];
+let arr2=arr.myFilter((item)=>{
+    if(item%2===0) return item;
+});
+
+console.log(arr2);
