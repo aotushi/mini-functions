@@ -1,7 +1,7 @@
 Array.prototype.myFilter=function(fn){
     //声明一个空数组,来接受符合条件的项
     let arr=[];
-    //** 想不到的是新建一个数组用来接受和fn作为参数
+    //** 想不到的是新建一个数组用来接收和用fn作为参数.如果参照es6filter方法实际使用来易理解
     //this指向:谁调用指向谁
     for(let i=0; i<this.length; i++){
         if(fn(this[i])) arr.push(this[i]);
