@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content=" width=device-width initial-scale=1.0 maximum-scale=1 minimum-scale=1 user-scalable=no viewport-fit=cover">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .demo1 {
+            width: 3.45rem;
+            height: 2rem;
+            background: #ddd;
+            margin: 0 auto;
+            margin-top: 0.15rem;
+        }
+
+        .demo2 {
+            position: relative;
+            /* top:2rem; */
+            margin: 0 auto;
+            width: 3.45rem;
+            height: 2rem;
+            background: rgba(72, 159, 199, 0.5);
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mother">
+        <div class="demo1"></div>
+        <div class="demo2"></div>
+    </div>
+    <script>
+        window.onload = function () {
+            let startY = 0;
+            let moveY = 0;
+            let endY = 0;
+
+            let demo2 = document.querySelector('.demo2');
+            // 手指触摸开始
+            demo2.addEventListener('touchstart', (event) => {
+                startY = event.touches[0].clientY;
+            });
+            // 手指拖动
+            demo2.addEventListener('touchmove', (event) => {
+                endY = event.touches[0].clientY;
+                moveY = endY - startY;
+                // 判断移动距离 
+                if (moveY < 0) {
+                    return;
+                };
+                if (moveY >= 80) {
+                    return moveY = 80;
+                }
+                console.log(moveY)
+                demo2.style.transform = `translateY(${moveY}px)`
+            });
+            // 点击结束
+            demo2.addEventListener('touchend', () => {
+                demo2.style.transform = 'translateY(0px)';
+                demo2.style.transition = `transform 1s linear`
+
+            })
+        }
+
+
+
+        // 实时刷新页面布局
+        function adapter() {
+            const dip = document.documentElement.clientWidth;
+            const rootFontSize = (dip * 100) / 375;
+            document.documentElement.style.fontSize = rootFontSize + 'px';
+
+        }
+        adapter();
+        window.onresize = adapter;
+    </script>
+</body>
+
+</html>
