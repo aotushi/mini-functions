@@ -1,2 +1,5 @@
 # untracked file
 /node_modules
+
+/00_htmlcss/0.html
+/03_*/node_modules
