@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{margin:0;padding:0;}
+    .box{
+      height:600px;
+      background:#ddd;
+      margin:0 200px;
+    }
+    .center{
+      width:100%;
+      height: 600px;
+      background:#ccc;
+      float:left;
+    }
+    .left{
+      width: 200px;
+      height: 600px;
+      background:green;
+      float:left;
+      margin-left:-100%;
+      position:relative;
+      left:-200px;
+    }
+    .right{
+      width: 200px;
+      height: 600px;
+      background:yellow;
+      float:left;
+      margin-left:-200px;
+      position:relative;
+      left:200px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="center">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate tempore beatae nisi dicta fugiat, neque voluptatum quis quod alias libero rem inventore, dolores similique culpa ab architecto, eaque ullam exercitationem!
+    </div>
+    <div class="left">左侧</div>
+    <div class="right">右侧</div>
+  </div>
+</body>
+</html>
