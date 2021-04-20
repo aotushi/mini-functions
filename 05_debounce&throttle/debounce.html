@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <span>添加防抖的input</span><input id="inputNode" />
+  <script>
+    let inputNode = document.getElementById('inputNode');
+    // 回调的函数
+    function ajax(content) {
+      console.log('ajax' + content);
+    }
+    // 防抖函数
+    function debounce(callback, delay) {
+      return function (event) {
+        if (callback.timeoutId) {
+          clearTimeout(callback.timeoutId);
+        }
+        let timeoutId = setTimeout(() => {
+          callback(event);
+          delete callback.timeoutId;
+        }, delay);
+      }
+    }
+    let debounceAjax = debounce(ajax, 2000);
+    inputNode.addEventListener('keyup', function (e) {
+      debounceAjax(e.target.value);
+    })
+  </script>
+</body>
+
+</html>

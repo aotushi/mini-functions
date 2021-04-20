@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <span>添加节流的input</span><input id="inputNode" />
+
+  <script>
+    let inputNode = document.getElementById('inputNode');
+    // 声明节流函数
+    function throttle(callback, delay) {
+      let start = 0;
+      return function (event) {
+        let current = Date.now();
+        if (current - start > delay) {
+          // callback.call(this,event);
+          callback(event);
+          start = current;
+        }
+      }
+    }
+
+    // 声明需要回调的函数
+    function ajax(content) {
+      console.log('ajax' + content);
+    }
+
+    // 声明变量接收节流函数的回调
+    let throttleAjax = throttle(ajax, 3000);
+    // 触发并调用节流函数
+    inputNode.addEventListener('keyup', function (e) {
+      throttleAjax(e.target.value)
+    })
+  </script>
+</body>
+
+</html>
