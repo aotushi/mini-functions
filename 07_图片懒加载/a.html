@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<!-- https://segmentfault.com/a/1190000010744417?utm_source=sf-similar-article -->
+<style>
+  .img-area{
+    height: 600px;
+    text-align: center;
+  }
+  img{
+    border-style:none
+  }
+</style>
+<body>
+  <div class="container">
+    <div class="img-area">
+      <img class="my-photo" alt="loading" data-src="http://axuebin.com/lazyload/img/img1.png">
+    </div>
+    <div class="img-area">
+      <img class="my-photo" alt="loading" data-src="http://axuebin.com/lazyload/img/img2.png">
+    </div>
+    <div class="img-area">
+      <img class="my-photo" alt="loading" data-src="http://axuebin.com/lazyload/img/img3.png">
+    </div>
+    <div class="img-area">
+      <img class="my-photo" alt="loading" data-src="http://axuebin.com/lazyload/img/img4.png">
+    </div>
+    <div class="img-area">
+      <img class="my-photo" alt="loading" data-src="http://axuebin.com/lazyload/img/img5.png">
+    </div>
+    <div class="img-area">
+      <img class="my-photo" alt="loading" data-src="http://axuebin.com/lazyload/img/img6.png">
+    </div>
+    <div class="img-area">
+      <img class="my-photo" alt="loading" data-src="http://axuebin.com/lazyload/img/img7.png">
+    </div>
+    <div class="img-area">
+      <img class="my-photo" alt="loading" data-src="http://axuebin.com/lazyload/img/img8.png">
+    </div>
+    <div class="img-area">
+      <img class="my-photo" alt="loading" data-src="http://axuebin.com/lazyload/img/img9.png">
+    </div>
+    <div class="img-area">
+      <img class="my-photo" alt="loading" data-src="http://axuebin.com/lazyload/img/img10.png">
+    </div>
+  </div>
+
+  <script>
+    window.onload = checkImgs;
+    window.onscroll = throttle(checkImgs)
+    function isInSight(el){
+      const bound = el.getBoundingClientRect();
+      const clientHeight = window.innerHeight;
+
+      return bound.top <= clientHeight + 100;
+    }
+
+
+    function checkImgs(){
+      const imgs = document.querySelectorAll('.my-photo');
+      Array.from(imgs).forEach(el=>{
+        if(isInSight(el)){
+          loadImg(el)
+        }
+      })
+    }
+
+    function loadImg(el){
+      if(!el.src){
+        const source = el.dataset.src;
+        el.src = source;
+      }
+    }
+
+    function throttle(callback, delay=500){
+      let start = 0;
+      return function(){
+        const current = new Date();
+        if(current-start>delay){
+          callback();
+          start = current;
+        }
+      }
+    }
+  </script>
+</body>
+</html>

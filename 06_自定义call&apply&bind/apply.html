@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function myApply(fn,obj,args){
+      if(obj===null||obj===undefined){
+        obj = window;
+      }
+
+      obj.tempFn = fn;
+      let result = obj.tempFn(...args);
+      delete obj.tempFn;
+      return result;
+    }
+
+    function add(a,b){
+      console.log(this);
+      console.log(a+b+this.c)
+    }
+    let obj = {c:2};
+    var c = 1;
+    // myApply(add,null,[1,2])
+
+
+
+    Function.prototype.myApply2=function(obj,args){
+      if(obj===null||obj===undefined){
+        // obj = window;
+        return this(...args);
+      }
+
+      obj.tempFn = fn;
+      let result = obj.tempFn(...args);
+      delete obj.tempFn;
+      return result;
+    }
+
+    add.myApply2(null,[1,2])
+  </script>
+</body>
+</html>
